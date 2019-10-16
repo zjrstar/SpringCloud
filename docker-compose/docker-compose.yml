@@ -42,6 +42,7 @@ services:
 
   mysql-init:
     image: mysql:5.7
+    container_name: mysql-init
     command: /init-db.sh
     networks:
       - sc-net
@@ -52,6 +53,8 @@ services:
       - ./init-db.sh:/init-db.sh
     environment:
       MYSQL_ROOT_PASSWORD: root123
+    depends_on:
+      - mysql
 
 networks:
   sc-net:
